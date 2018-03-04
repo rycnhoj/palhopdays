@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pal Hop Days</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+    crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Chewy|Open+Sans" rel="stylesheet">
+  <link rel="stylesheet" href="./css/custom.css">
+  <script>
+    $(document).ready(
+      $.getJSON('./data/about.json', function (resp) {
+        console.log(resp.about)
+        var aboutArray = resp.about
+        aboutArray.forEach(function (section) {
+          $('.about-text').append('<p>' + section + '</p>')
+        })
+      })
+    )
+
+    var pages = ['about', 'bands', 'shop', 'sponsorship']
+
+    function changePage(mode) {
+      pages.forEach(function (page) {
+        if(page === mode) {
+          console.log(page)
+          $('.nav-' + page).addClass('text-underline')
+          $('.' + page).show()
+        } else {
+          $('.nav-' + page).removeClass('text-underline')
+          $('.' + page).hide()
+        }
+      })
+    }
+
+  </script>
+</head>
+
+<body>
+  <div class="center">
+    <nav class="navbar">
+      <a class="navbar-brand"></a>
+      <ul class="navbar-nav">
+        <li>
+          <a class='nav-about' onclick="changePage('about')">about</a>
+        </li>
+        <li>
+          <a class='nav-bands' onclick="changePage('bands')">bands</a>
+        </li>
+        <li>
+          <a class='nav-shop' onclick="changePage('shop')">shop</a>
+        </li>
+        <li>
+          <a class='nav-sponsorship' onclick="changePage('sponsorship')">sponsorship</a>
+        </li>
+      </ul>
+    </nav>
+    <div class="content">
+      <div class="about">
+        <div class="page-content">
+          <div class="poster col-lg-5">
+            <img class='poster' src="./images/poster.jpg"/>
+          </div>
+          <div class="about-text col-lg-7">
+              <h1>about</h1>
+              <hr>
+          </div>
+        </div>
+      </div>
+      <div class="bands">
+        <h1>bands</h1>
+      </div>
+      <div class="shop">
+        <h1>shop</h1>
+      </div>
+      <div class="sponsorship">
+        <h1>sponsorship</h1>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
