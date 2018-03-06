@@ -6,28 +6,38 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Pal Hop Days</title>
+  <script type="text/javascript" src="http://www.youtube.com/player_api"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
     crossorigin="anonymous">
   <link href="https://fonts.googleapis.com/css?family=Chewy|Open+Sans" rel="stylesheet">
   <link rel="stylesheet" href="./css/custom.css">
   <script>
-    $(document).ready(
+    var pages = ['home', 'about', 'bands', 'videos', 'shop', 'sponsorship']
+
+    $(document).ready(function(){
+      pages.forEach(function (page) {
+        if(page !== 'home') {
+          $('.' + page).hide()
+        }
+      })
+
       $.getJSON('./data/about.json', function (resp) {
-        console.log(resp.about)
         var aboutArray = resp.about
         aboutArray.forEach(function (section) {
           $('.about-text').append('<p>' + section + '</p>')
         })
       })
-    )
-
-    var pages = ['about', 'bands', 'shop', 'sponsorship']
+    })
 
     function changePage(mode) {
       pages.forEach(function (page) {
+
+        if(page !== 'home') {
+          $('#homePlayer').get(0).stopVideo();
+        }
+
         if(page === mode) {
-          console.log(page)
           $('.nav-' + page).addClass('text-underline')
           $('.' + page).show()
         } else {
@@ -43,13 +53,16 @@
 <body>
   <div class="center">
     <nav class="navbar">
-      <a class="navbar-brand"></a>
+      <a class="navbar-brand" onclick="changePage('home')"></a>
       <ul class="navbar-nav">
         <li>
           <a class='nav-about' onclick="changePage('about')">about</a>
         </li>
         <li>
           <a class='nav-bands' onclick="changePage('bands')">bands</a>
+        </li>
+        <li>
+            <a class='nav-videos' onclick="changePage('videos')">videos</a>
         </li>
         <li>
           <a class='nav-shop' onclick="changePage('shop')">shop</a>
@@ -60,19 +73,27 @@
       </ul>
     </nav>
     <div class="content">
+      <div class="home">
+        <div class="embed-responsive embed-responsive-16by9">
+          <iframe id="homePlayer" class="embed-responsive-item" src="https://www.youtube.com/embed/PO3cKEZ7UcE?rel=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+      </div>
       <div class="about">
         <div class="page-content">
           <div class="poster col-lg-5">
-            <img class='poster' src="./images/poster.jpg"/>
+            <img src="./images/poster.jpg"/>
           </div>
-          <div class="about-text col-lg-7">
+          <div class="text-section col-lg-7">
               <h1>about</h1>
-              <hr>
+              <div class="about-text"></div>
           </div>
         </div>
       </div>
       <div class="bands">
         <h1>bands</h1>
+      </div>
+      <div class="videos">
+          <h1>videos</h1>
       </div>
       <div class="shop">
         <h1>shop</h1>
