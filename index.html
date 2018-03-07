@@ -15,6 +15,15 @@
   <script>
     var pages = ['home', 'about', 'bands', 'videos', 'shop', 'sponsorship']
 
+    //Holds a reference to the YouTube player
+    var homeVideoPlayer;
+
+    //this function is called by the API
+    function onYouTubeIframeAPIReady() {
+      //creates the player object
+      homeVideoPlayer = new YT.Player('homeVideo');
+    }
+
     $(document).ready(function(){
       pages.forEach(function (page) {
         if(page !== 'home') {
@@ -34,7 +43,7 @@
       pages.forEach(function (page) {
 
         if(page !== 'home') {
-          $('#homePlayer').get(0).stopVideo();
+          homeVideoPlayer.stopVideo()
         }
 
         if(page === mode) {
@@ -75,7 +84,7 @@
     <div class="content">
       <div class="home">
         <div class="embed-responsive embed-responsive-16by9">
-          <iframe id="homePlayer" class="embed-responsive-item" src="https://www.youtube.com/embed/PO3cKEZ7UcE?rel=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+          <iframe id="homeVideo" class="embed-responsive-item" type="text/html" src="https://www.youtube.com/embed/PO3cKEZ7UcE?enablejsapi=1&rel=0&showinfo=0&color=white&iv_load_policy=3" frameborder="0" allowfullscreen></iframe>
         </div>
       </div>
       <div class="about">
@@ -90,7 +99,24 @@
         </div>
       </div>
       <div class="bands">
-        <h1>bands</h1>
+        <div class="page-content">
+          <!-- <h1>bands</h1> -->
+          <div class="band-video-section col-lg-9">
+              <div class="embed-responsive embed-responsive-16by9">
+                <iframe id="royalKnights" class="embed-responsive-item" type="text/html" src="https://www.youtube.com/embed/dFd5yPSsXV0?enablejsapi=1&rel=0&showinfo=0&color=white&iv_load_policy=3" frameborder="0" allowfullscreen></iframe>
+              </div>
+          </div>
+          <div class="band-list col-lg-3">
+            <ul>
+                <li><img src="./images/bands/MD.png"></li>
+                <li><img src="./images/bands/RK.png"></li>
+                <li><img src="./images/bands/TI.png"></li>
+                <li><img src="./images/bands/TRR.png"></li>
+                <li><img src="./images/bands/TT.png"></li>
+                <li><img src="./images/bands/TTT.png"></li>
+              </ul>
+          </div>
+        </div>
       </div>
       <div class="videos">
           <h1>videos</h1>
