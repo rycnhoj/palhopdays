@@ -2,27 +2,30 @@
     Main
 ///////////////////////////////////////////////// */
 
+.col-lg-12, .col-lg-11, .col-lg-10, .col-lg-9, .col-lg-8, .col-lg-7, .col-lg-6, .col-lg-5, .col-lg-4, .col-lg-3, .col-lg-2, .col-lg-1 {
+  padding: 0;
+}
+
 body {
   background-color: black;
   background-image: url('../images/photoBKG.jpg');
   background-position: top center;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: 85%;
+  overflow:hidden;
 }
 
 .center {
   margin: 0 auto;
-  width: 80%;
+  width: 75%;
 }
 
 .content {
-  background-color: #fdfdfdfa;
+  background-color: rgba(253, 253, 253, 0.98);
   border-radius: 4px;
   border-style: double;
   border-width: 10px;
-  padding: 15px;
-  min-height: 100px;
-  height: auto;
+  padding: 10px;
   overflow: auto;
 }
 
@@ -30,9 +33,22 @@ h1 {
   font-family: 'Chewy', cursive;
   margin: 0;
   text-align: right;
-  color: #fdc600;
-  text-shadow: -3px -1px 0px #333;
+  color: #111;
   letter-spacing: 3px;
+}
+
+p {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 18px;
+  text-indent: 25px;
+  letter-spacing: -1px;
+  text-align: justify;
+  line-height: 20px;
+  margin-bottom: 5px;
+}
+
+.row {
+  margin: 0;
 }
 
 /* /////////////////////////////////////////////////
@@ -42,7 +58,7 @@ h1 {
 .navbar {
   font-family: 'Chewy', cursive;
   letter-spacing: 2px;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
   margin-top: 50px;
 }
 
@@ -52,10 +68,11 @@ h1 {
   background-size: cover;
   cursor: pointer;
   height: 150px;
-  margin: -36px -20px;
+  margin: -50px -20px;
   padding: 0;
   width: 525px;
   filter: drop-shadow(-4px 2px 5px #222);
+  display: none;
 }
 
 .navbar-nav {
@@ -65,9 +82,8 @@ h1 {
 }
 
 ul.navbar-nav {
-  background-color: #fdfdfdfa;
+  background-color: rgba(253, 253, 253, 0.98);
   border-color: #111;
-  border-radius: 50px;
   border-style: double;
   border-width: 10px;
   list-style-type: none;
@@ -95,11 +111,13 @@ ul.navbar-nav {
   line-height: 18px;
   padding: 14px 12px;
   text-align: center;
+  user-select: none;
+  -webkit-user-drag: none;
 }
 
 .navbar-nav li a:hover {
   color: #fdc600;
-  text-shadow: 2px 2px #000;
+  text-shadow: 2px 2px #111;
   text-decoration-line: none;
 }
 
@@ -107,14 +125,13 @@ ul.navbar-nav {
   About
 ///////////////////////////////////////////////// */
 
-.poster{
+.about-poster{
   padding: 0;
 }
 
-.poster img {
+.about-poster img {
   box-shadow: 0px 1px 3px 0px #333;
-  max-height: 100%;
-  max-width: 95%;
+  max-width:  96.55%;
   display: block;
 }
 
@@ -124,18 +141,33 @@ ul.navbar-nav {
 }
 
 .text-section{
-  padding-left: 0;
+  padding: 0;
+}
+
+.about-title {
+  text-align: center;
 }
 
 .about-text {
-  padding-top: 25px;
+  padding-top: 10%;
 }
 
-.about-text p {
-  font-family: 'Open Sans', sans-serif;
-  font-size: 16px;
-  text-indent: 25px;
-  text-align: justify;
+.about-images {
+  display: inline-block;
+  padding-top: 5%;
+}
+
+.about-image {
+  padding: 5px;
+  margin-left: 12px;
+  display: inline;
+}
+
+.about-image img {
+  vertical-align: middle;
+  width: 28%;
+  border: 5px solid white;
+  filter: drop-shadow(0px 0px 1px #222);
 }
 
 
@@ -143,14 +175,74 @@ ul.navbar-nav {
   Bands
 ///////////////////////////////////////////////// */
 
-.band-video-section {
-  padding: 0;
-}
-
-.band-list ul {
-  list-style-type: none;
+.band-list {
+  padding-left: 0;
+  padding-right: 5px;
 }
 
 .band-list img {
-  width: 200px;
+  display: block;
+  width: 86%;
+  margin-left: 15px;
+  padding-top: 5px;
+  cursor: pointer;
+}
+
+/* .band-image#RK {
+  margin-top: -20px;
+}
+.band-image#TI {
+  margin-top: -5px;
+}
+.band-image#TTT {
+  margin-top: -15px;
+} */
+
+.band-list img:hover {
+  filter: drop-shadow(0 -2px 0px #fdc600);
+}
+
+.band-list img.active {
+  filter: drop-shadow(0px 3px 0px #fdc600);
+}
+
+.band-title {
+  color: #111;
+  font-family: 'Chewy', cursive;
+  font-size: 30px;
+  letter-spacing: 1px;
+  margin: 0;
+  padding-bottom: 5px;
+  padding-top: 5px;
+  text-align: center;
+}
+
+.band-description {
+  height: 175px;
+  overflow: auto;
+}
+
+.band-description p {
+  padding-right: 5px;
+}
+
+.band-video {
+  padding: 0;
+}
+
+/* /////////////////////////////////////////////////
+  Shop
+///////////////////////////////////////////////// */
+
+.shop img {
+  width: 60%
+}
+
+.shop-bill-img {
+  padding-right: 5px;
+  float: right;
+}
+
+.shop-poster-img {
+  padding-left: 5px;
 }

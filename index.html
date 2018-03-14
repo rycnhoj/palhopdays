@@ -13,40 +13,120 @@
   <link href="https://fonts.googleapis.com/css?family=Chewy|Open+Sans" rel="stylesheet">
   <link rel="stylesheet" href="./css/custom.css">
   <script>
+    /* /////////////////////////////////////////////////
+      Constants
+    ///////////////////////////////////////////////// */
+
     var pages = ['home', 'about', 'bands', 'videos', 'shop', 'sponsorship']
 
-    //Holds a reference to the YouTube player
-    var homeVideoPlayer;
+    /* /////////////////////////////////////////////////
+      Initial States
+    ///////////////////////////////////////////////// */
 
-    //this function is called by the API
-    function onYouTubeIframeAPIReady() {
-      //creates the player object
-      homeVideoPlayer = new YT.Player('homeVideo');
-    }
+    $('.navbar-brand').hide()
+    $('#homeVideo').hide()
+    $('#bandVideo').hide()
 
-    $(document).ready(function(){
-      pages.forEach(function (page) {
-        if(page !== 'home') {
-          $('.' + page).hide()
-        }
-      })
+    /* /////////////////////////////////////////////////
+      On Document Ready
+    ///////////////////////////////////////////////// */
 
+    var bandsData
+
+    $(document).ready(function() {
+      pages.forEach(function (page) { $('.' + page).hide() })
+
+      // ABOUT DATA
       $.getJSON('./data/about.json', function (resp) {
-        var aboutArray = resp.about
-        aboutArray.forEach(function (section) {
+        resp.about.forEach(function (section) {
           $('.about-text').append('<p>' + section + '</p>')
         })
       })
+
+      // BAND DATA
+      $.getJSON('./data/bands.json', function (resp) { bandsData = resp })
+
+      var contentHeight = $('.content').height()
+      console.log(contentHeight)
     })
+
+    /* /////////////////////////////////////////////////
+      YouTube
+    ///////////////////////////////////////////////// */
+
+    var homeVideoPlayer, bandVideoPlayer
+
+    function onYouTubeIframeAPIReady() {
+      homeVideoPlayer = new YT.Player('homeVideo', {
+        videoId: 'PO3cKEZ7UcE',
+        playerVars: { 'autoplay': 0, 'controls': 0 , 'enablejsapi': 1, 'modestbranding': 1, 'rel': 0, 'showinfo': 0 },
+        events: { 'onReady': homeVideoPlayerReady }
+      })
+
+      bandVideoPlayer = new YT.Player('bandVideo', {
+        videoId: bandVideos[firstBand],
+        playerVars: { 'autoplay': 1, 'controls': 0 , 'enablejsapi': 1, 'modestbranding': 1, 'rel': 0, 'showinfo': 0 },
+        events: { 'onReady': bandVideoPlayerReady }
+      })
+    }
+
+    /* /////////////////////////////////////////////////
+      Player Ready Control
+    ///////////////////////////////////////////////// */
+
+    var homeReady, bandReady
+
+    function homeVideoPlayerReady() {
+      homeReady = true
+      $('#homeVideo').fadeIn(1000);
+
+      onPlayerReady()
+    }
+
+    function bandVideoPlayerReady() {
+      bandReady = true
+      $('#bandVideo').fadeIn(1000);
+      onPlayerReady()
+    }
+
+    function onPlayerReady() {
+      if(homeReady && bandReady) {
+        $('.navbar-brand').fadeIn(1000);
+        checkUrlForPage()
+      }
+    }
+
+    /* /////////////////////////////////////////////////
+      Handle page nav
+    ///////////////////////////////////////////////// */
+
+    function checkUrlForPage() {
+      var pageNav = window.location.hash.substr(1);
+      if(pageNav) {
+        changePage(pageNav)
+      }
+    }
+
+    /* /////////////////////////////////////////////////
+      Changing pages
+    ///////////////////////////////////////////////// */
 
     function changePage(mode) {
       pages.forEach(function (page) {
 
         if(page !== 'home') {
           homeVideoPlayer.stopVideo()
+        } else if (page !== 'bands'){
+          bandVideoPlayer.stopVideo()
+        }
+
+        if(page === 'bands') {
+          changeBandVideo(firstBand)
+          bandVideoPlayer.stopVideo()
         }
 
         if(page === mode) {
+          window.history.pushState(mode, "Title", "#" + mode); //Update Url
           $('.nav-' + page).addClass('text-underline')
           $('.' + page).show()
         } else {
@@ -56,6 +136,64 @@
       })
     }
 
+    /* /////////////////////////////////////////////////
+      Changing band videos
+    ///////////////////////////////////////////////// */
+
+    var bandVideos = {
+      'MD': '0AHibdNSVk8',
+      'TTT': 'RTk5-BSh8ag',
+      'RK': 'dFd5yPSsXV0',
+      'TI': '1bfX53tC6b8',
+      'TRR': 'Q_89WxaCANo',
+      'TT': 'iZmjZpVomaU',
+      'BE': 'xMlTqVBFmwM'
+    }
+
+    var bandTitles = {
+      'MD': 'The Moon Dawgs',
+      'TTT': 'Terry and The Telstars',
+      'RK': 'The Royal Knights',
+      'TI': 'The Innkeepers',
+      'TRR': 'The Rockin\' Recons',
+      'TT': 'The Travelers',
+      'BE': 'Bob Elie'
+    }
+
+    function updateSelectedBand(bandId) {
+      var bandImages = $('.band-image').toArray()
+
+      bandImages.forEach(function (image) {
+        if(image.id === bandId) {
+          $(image).addClass('active')
+        } else {
+          $(image).removeClass('active')
+        }
+      })
+    }
+
+    var firstBand = 'MD'
+
+    function changeBandVideo(bandId) {
+      var poster = $('.band-poster').empty()
+      var title = $('.band-title').empty()
+      var description = $('.band-description').empty()
+      var videoId = bandVideos[bandId]
+      var paragraphs = bandsData[bandId]
+
+      $('#bandVideo').fadeOut(500);
+
+      poster.append('<img class="poster" src="./images/posters/' + bandId + '.jpg">')
+      bandVideoPlayer.loadVideoById({'videoId': videoId});
+      title.text(bandTitles[bandId])
+      paragraphs.forEach(function (paragrpah) {
+        description.append('<p class="band">' + paragrpah + '</p>')
+      })
+
+      updateSelectedBand(bandId)
+
+      $('#bandVideo').fadeIn(500)
+    }
   </script>
 </head>
 
@@ -76,45 +214,50 @@
         <li>
           <a class='nav-shop' onclick="changePage('shop')">shop</a>
         </li>
-        <li>
-          <a class='nav-sponsorship' onclick="changePage('sponsorship')">sponsorship</a>
-        </li>
       </ul>
     </nav>
     <div class="content">
       <div class="home">
         <div class="embed-responsive embed-responsive-16by9">
-          <iframe id="homeVideo" class="embed-responsive-item" type="text/html" src="https://www.youtube.com/embed/PO3cKEZ7UcE?enablejsapi=1&rel=0&showinfo=0&color=white&iv_load_policy=3" frameborder="0" allowfullscreen></iframe>
+          <div id="homeVideo" class="embed-responsive-item"></div>
         </div>
       </div>
       <div class="about">
-        <div class="page-content">
-          <div class="poster col-lg-5">
+        <div class="page-content row">
+          <div class="about-poster col-lg-5">
             <img src="./images/poster.jpg"/>
           </div>
-          <div class="text-section col-lg-7">
-              <h1>about</h1>
+          <div class="col-lg-7">
+            <div class="text-section">
               <div class="about-text"></div>
+              <div class="about-images">
+                <div class="about-image"><img src="./images/about/about2.jpg"></div>
+                <div class="about-image"><img src="./images/about/about1.jpg"></div>
+                <div class="about-image"><img src="./images/about/about3.jpg"></div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
       <div class="bands">
         <div class="page-content">
-          <!-- <h1>bands</h1> -->
-          <div class="band-video-section col-lg-9">
-              <div class="embed-responsive embed-responsive-16by9">
-                <iframe id="royalKnights" class="embed-responsive-item" type="text/html" src="https://www.youtube.com/embed/dFd5yPSsXV0?enablejsapi=1&rel=0&showinfo=0&color=white&iv_load_policy=3" frameborder="0" allowfullscreen></iframe>
-              </div>
-          </div>
-          <div class="band-list col-lg-3">
-            <ul>
-                <li><img src="./images/bands/MD.png"></li>
-                <li><img src="./images/bands/RK.png"></li>
-                <li><img src="./images/bands/TI.png"></li>
-                <li><img src="./images/bands/TRR.png"></li>
-                <li><img src="./images/bands/TT.png"></li>
-                <li><img src="./images/bands/TTT.png"></li>
-              </ul>
+          <div class="row">
+            <div class="band-list col-lg-3">
+              <img id="MD" class="band-image" onclick='changeBandVideo(this.id)' src="./images/bands/MD.png">
+              <img id="RK" class="band-image" onclick='changeBandVideo(this.id)' src="./images/bands/RK.png">
+              <img id="TI" class="band-image" onclick='changeBandVideo(this.id)' src="./images/bands/TI.png">
+              <img id="TRR" class="band-image" onclick='changeBandVideo(this.id)' src="./images/bands/TRR.png">
+              <img id="TT" class="band-image" onclick='changeBandVideo(this.id)' src="./images/bands/TT.png">
+              <img id="TTT" class="band-image" onclick='changeBandVideo(this.id)' src="./images/bands/TTT.png">
+              <img id="BE" class="band-image" onclick='changeBandVideo(this.id)' src="./images/bands/BE.png">
+            </div>
+            <div class="band-video col-lg-9">
+                <div class="embed-responsive embed-responsive-16by9">
+                  <div id="bandVideo"></div>
+                </div>
+                <h1 class="band-title"></h1>
+                <div class="band-description"></div>
+            </div>
           </div>
         </div>
       </div>
@@ -123,9 +266,11 @@
       </div>
       <div class="shop">
         <h1>shop</h1>
-      </div>
-      <div class="sponsorship">
-        <h1>sponsorship</h1>
+        <div class="row">
+          <div class="col-lg-6"><img class="shop-bill-img" src="./images/shop/Moraldo-12_0026C6.jpg"></div>
+          <div class="col-lg-6"><img class="shop-poster-img" src="./images/shop/Haines Photography 04.jpg"></div>
+        </div>
+
       </div>
     </div>
   </div>
