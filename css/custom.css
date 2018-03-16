@@ -10,8 +10,9 @@ body {
   background-color: black;
   background-image: url('../images/photoBKG.jpg');
   background-position: top center;
+  background-position-y: 24%;
   background-repeat: no-repeat;
-  background-size: 85%;
+  background-size: 115%;
   overflow:hidden;
 }
 
