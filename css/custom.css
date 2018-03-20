@@ -10,10 +10,9 @@ body {
   background-color: black;
   background-image: url('../images/photoBKG_L.jpg');
   background-position: top center;
-  background-position-y: 24%;
+  background-position-y: -250px;
   background-repeat: no-repeat;
   background-size: 115%;
-  overflow:hidden;
 }
 
 .center {
@@ -27,7 +26,6 @@ body {
   border-style: double;
   border-width: 10px;
   padding: 10px;
-  overflow: auto;
 }
 
 h1 {
@@ -73,7 +71,6 @@ p {
   padding: 0;
   width: 525px;
   filter: drop-shadow(-4px 2px 5px #222);
-  display: none;
 }
 
 .navbar-nav {
@@ -145,32 +142,21 @@ ul.navbar-nav {
   padding: 0;
 }
 
-.about-title {
-  text-align: center;
+.about-headline h3 {
+  font-weight: bold;
+  text-align: right;
+  margin-top: 10px;
 }
 
-.about-text {
-  padding-top: 10%;
+.about-text p {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 18px;
+  text-indent: 25px;
+  letter-spacing: 0px;
+  text-align: justify;
+  line-height: 24px;
+  margin-bottom: 5px;
 }
-
-.about-images {
-  display: inline-block;
-  padding-top: 5%;
-}
-
-.about-image {
-  padding: 5px;
-  margin-left: 12px;
-  display: inline;
-}
-
-.about-image img {
-  vertical-align: middle;
-  width: 28%;
-  border: 5px solid white;
-  filter: drop-shadow(0px 0px 1px #222);
-}
-
 
 /* /////////////////////////////////////////////////
   Bands
@@ -189,46 +175,42 @@ ul.navbar-nav {
   cursor: pointer;
 }
 
-/* .band-image#RK {
-  margin-top: -20px;
-}
-.band-image#TI {
-  margin-top: -5px;
-}
-.band-image#TTT {
-  margin-top: -15px;
-} */
-
 .band-list img:hover {
-  filter: drop-shadow(0 -2px 0px #fdc600);
+  filter: drop-shadow(-2px -2px 0px #fdc600);
+
 }
 
 .band-list img.active {
-  filter: drop-shadow(0px 3px 0px #fdc600);
+  filter: drop-shadow(2px 2px 0px #fdc600);
 }
 
 .band-title {
   color: #111;
   font-family: 'Chewy', cursive;
-  font-size: 30px;
+  font-size: 40px;
   letter-spacing: 1px;
   margin: 0;
   padding-bottom: 5px;
-  padding-top: 5px;
-  text-align: center;
-}
-
-.band-description {
-  height: 175px;
-  overflow: auto;
+  padding-top: 15px;
+  filter: drop-shadow(-2px 2px 0px #fdc600);
 }
 
 .band-description p {
   padding-right: 5px;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 18px;
+  text-indent: 42px;
+  letter-spacing: 0px;
+  text-align: justify;
+  line-height: 22px;
+  margin-bottom: 10px;
 }
 
-.band-video {
-  padding: 0;
+.embed-responsive {
+  filter: drop-shadow(3px 3px 0px #fdc600);
+  border: 5px solid #111111;
+  padding-bottom: 55.25%;
+
 }
 
 /* /////////////////////////////////////////////////

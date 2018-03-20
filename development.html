@@ -13,44 +13,43 @@
   <link href="https://fonts.googleapis.com/css?family=Chewy|Open+Sans" rel="stylesheet">
   <link rel="stylesheet" href="./css/custom.css">
   <script>
-    /* /////////////////////////////////////////////////
-      Constants
-    ///////////////////////////////////////////////// */
-
     var pages = ['home', 'about', 'bands', 'videos', 'shop', 'sponsorship']
-
-    /* /////////////////////////////////////////////////
-      Initial States
-    ///////////////////////////////////////////////// */
-
-    $('.navbar-brand').hide()
-    $('#homeVideo').hide()
-    $('#bandVideo').hide()
-
-    /* /////////////////////////////////////////////////
-      On Document Ready
-    ///////////////////////////////////////////////// */
-
+    var bandVideos = {
+      'MD': '0AHibdNSVk8',
+      'TTT': 'RTk5-BSh8ag',
+      'RK': 'dFd5yPSsXV0',
+      'TI': '1bfX53tC6b8',
+      'TRR': 'Q_89WxaCANo',
+      'TT': 'iZmjZpVomaU',
+      'BE': 'xMlTqVBFmwM'
+    }
+    var bandTitles = {
+      'MD': 'The Moon Dawgs',
+      'TTT': 'Terry and The Telstars',
+      'RK': 'The Royal Knights',
+      'TI': 'The Innkeepers',
+      'TRR': 'The Rockin\' Recons',
+      'TT': 'The Travelers',
+      'BE': 'Bob Elie'
+    }
+    var firstBand = 'MD'
+    var aboutData
     var bandsData
 
     $(document).ready(function() {
       pages.forEach(function (page) { $('.' + page).hide() })
 
-      // ABOUT DATA
-      $.getJSON('./data/about.json', function (resp) {
-        resp.about.forEach(function (section) {
+      $.getJSON('./data/about.json', function (resp) { aboutData = resp }).then(function() {
+        $('.about-headline').append('<h3>' + aboutData.headline[0] + '</h3>')
+        aboutData.about.forEach(function (section) {
           $('.about-text').append('<p>' + section + '</p>')
         })
       })
 
-      // BAND DATA
       $.getJSON('./data/bands.json', function (resp) { bandsData = resp })
     })
 
-    /* /////////////////////////////////////////////////
-      YouTube
-    ///////////////////////////////////////////////// */
-
+    // YouTube
     var homeVideoPlayer, bandVideoPlayer
 
     function onYouTubeIframeAPIReady() {
@@ -67,47 +66,37 @@
       })
     }
 
-    /* /////////////////////////////////////////////////
-      Player Ready Control
-    ///////////////////////////////////////////////// */
+    // Player Ready Control
 
     var homeReady, bandReady
 
     function homeVideoPlayerReady() {
       homeReady = true
-      $('#homeVideo').fadeIn(1000);
-
       onPlayerReady()
     }
 
     function bandVideoPlayerReady() {
       bandReady = true
-      $('#bandVideo').fadeIn(1000);
       onPlayerReady()
     }
 
     function onPlayerReady() {
       if(homeReady && bandReady) {
-        $('.navbar-brand').fadeIn(1000);
         checkUrlForPage()
       }
     }
 
-    /* /////////////////////////////////////////////////
-      Handle page nav
-    ///////////////////////////////////////////////// */
-
+    // Handle page nav
     function checkUrlForPage() {
       var pageNav = window.location.hash.substr(1);
       if(pageNav) {
         changePage(pageNav)
+      } else {
+        changePage('home')
       }
     }
 
-    /* /////////////////////////////////////////////////
-      Changing pages
-    ///////////////////////////////////////////////// */
-
+    // Changing pages
     function changePage(mode) {
       pages.forEach(function (page) {
 
@@ -115,6 +104,10 @@
           homeVideoPlayer.stopVideo()
         } else if (page !== 'bands'){
           bandVideoPlayer.stopVideo()
+        }
+
+        if(page === 'about') {
+
         }
 
         if(page === 'bands') {
@@ -133,28 +126,22 @@
       })
     }
 
-    /* /////////////////////////////////////////////////
-      Changing band videos
-    ///////////////////////////////////////////////// */
+    // Changing band videos
+    function changeBandVideo(bandId) {
+      var poster = $('.band-poster').empty()
+      var title = $('.band-title').empty()
+      var description = $('.band-description').empty()
+      var videoId = bandVideos[bandId]
+      var paragraphs = bandsData[bandId]
 
-    var bandVideos = {
-      'MD': '0AHibdNSVk8',
-      'TTT': 'RTk5-BSh8ag',
-      'RK': 'dFd5yPSsXV0',
-      'TI': '1bfX53tC6b8',
-      'TRR': 'Q_89WxaCANo',
-      'TT': 'iZmjZpVomaU',
-      'BE': 'xMlTqVBFmwM'
-    }
+      poster.append('<img class="poster" src="./images/posters/' + bandId + '.jpg">')
+      bandVideoPlayer.loadVideoById({'videoId': videoId});
+      title.text(bandTitles[bandId])
+      paragraphs.forEach(function (paragrpah) {
+        description.append('<p class="band">' + paragrpah + '</p>')
+      })
 
-    var bandTitles = {
-      'MD': 'The Moon Dawgs',
-      'TTT': 'Terry and The Telstars',
-      'RK': 'The Royal Knights',
-      'TI': 'The Innkeepers',
-      'TRR': 'The Rockin\' Recons',
-      'TT': 'The Travelers',
-      'BE': 'Bob Elie'
+      updateSelectedBand(bandId)
     }
 
     function updateSelectedBand(bandId) {
@@ -167,29 +154,6 @@
           $(image).removeClass('active')
         }
       })
-    }
-
-    var firstBand = 'MD'
-
-    function changeBandVideo(bandId) {
-      var poster = $('.band-poster').empty()
-      var title = $('.band-title').empty()
-      var description = $('.band-description').empty()
-      var videoId = bandVideos[bandId]
-      var paragraphs = bandsData[bandId]
-
-      $('#bandVideo').fadeOut(500);
-
-      poster.append('<img class="poster" src="./images/posters/' + bandId + '.jpg">')
-      bandVideoPlayer.loadVideoById({'videoId': videoId});
-      title.text(bandTitles[bandId])
-      paragraphs.forEach(function (paragrpah) {
-        description.append('<p class="band">' + paragrpah + '</p>')
-      })
-
-      updateSelectedBand(bandId)
-
-      $('#bandVideo').fadeIn(500)
     }
   </script>
 </head>
@@ -226,12 +190,8 @@
           </div>
           <div class="col-lg-7">
             <div class="text-section">
+              <div class="about-headline"></div>
               <div class="about-text"></div>
-              <div class="about-images">
-                <div class="about-image"><img src="./images/about/about2.jpg"></div>
-                <div class="about-image"><img src="./images/about/about1.jpg"></div>
-                <div class="about-image"><img src="./images/about/about3.jpg"></div>
-              </div>
             </div>
           </div>
         </div>
