@@ -53,22 +53,37 @@
     var homeVideoPlayer, bandVideoPlayer
 
     function onYouTubeIframeAPIReady() {
+      var vars = {
+        'autoplay': 0,
+        'controls': 0 ,
+        'enablejsapi': 1,
+        'modestbranding': 1,
+        'rel': 0,
+        'showinfo': 0
+      }
+
       homeVideoPlayer = new YT.Player('homeVideo', {
         videoId: 'PO3cKEZ7UcE',
-        playerVars: { 'autoplay': 0, 'controls': 0 , 'enablejsapi': 1, 'modestbranding': 1, 'rel': 0, 'showinfo': 0 },
+        playerVars: vars,
         events: { 'onReady': homeVideoPlayerReady }
       })
 
       bandVideoPlayer = new YT.Player('bandVideo', {
         videoId: bandVideos[firstBand],
-        playerVars: { 'autoplay': 1, 'controls': 0 , 'enablejsapi': 1, 'modestbranding': 1, 'rel': 0, 'showinfo': 0 },
+        playerVars: vars,
         events: { 'onReady': bandVideoPlayerReady }
+      })
+
+      posterVideoPlayer = new YT.Player('posterVideo', {
+        videoId: 'SWYucDQ9uNY',
+        playerVars: vars,
+        events: { 'onReady': posterVideoPlayerReady }
       })
     }
 
     // Player Ready Control
 
-    var homeReady, bandReady
+    var homeReady, bandReady, posterReady
 
     function homeVideoPlayerReady() {
       homeReady = true
@@ -80,8 +95,13 @@
       onPlayerReady()
     }
 
+    function posterVideoPlayerReady() {
+      posterReady = true
+      onPlayerReady()
+    }
+
     function onPlayerReady() {
-      if(homeReady && bandReady) {
+      if(homeReady && bandReady & posterReady) {
         checkUrlForPage()
       }
     }
@@ -185,14 +205,12 @@
       </div>
       <div class="about">
         <div class="page-content row">
-          <div class="about-poster col-lg-5">
-            <img src="./images/poster.jpg"/>
+          <div class="left-side col-lg-5">
+            <img class="about-poster img-responsive" src="./images/poster.jpg"/>
           </div>
-          <div class="col-lg-7">
-            <div class="text-section">
-              <div class="about-headline"></div>
-              <div class="about-text"></div>
-            </div>
+          <div class="rigt-side col-lg-7">
+            <div class="about-headline"></div>
+            <div class="about-text"></div>
           </div>
         </div>
       </div>
@@ -222,10 +240,23 @@
           <h1>videos</h1>
       </div>
       <div class="shop">
-        <h1>shop</h1>
         <div class="row">
-          <div class="col-lg-6"><img class="shop-bill-img" src="./images/shop/Moraldo-12_0026C6.jpg"></div>
-          <div class="col-lg-6"><img class="shop-poster-img" src="./images/shop/Haines Photography 04.jpg"></div>
+          <div class="left-side col-lg-3">
+            <a href="https://www.bonanza.com/booths/billstuff?item_sort_options[custom_category_id]=626882"  target="_blank">
+              <img class="shop-bill img-responsive" src="./images/shop/BillStuff.jpg">
+            </a>
+            <a href="https://hainesphotography.printeli.com/Collections/132957" target="_blank">
+              <img class="shop-haines img-responsive" src="./images/shop/HainesPhotography.jpg">
+            </a>
+          </div>
+          <div class="right-side col-lg-9">
+            <div class="embed-responsive embed-responsive-16by9">
+              <div id="posterVideo"></div>
+            </div>
+            <a href="https://www.google.com" target="_blank">
+              <img class="shop-posters img-responsive" src="./images/shop/Posters.jpg">
+            </a>
+          </div>
         </div>
 
       </div>

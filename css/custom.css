@@ -2,15 +2,10 @@
     Main
 ///////////////////////////////////////////////// */
 
-.col-lg-12, .col-lg-11, .col-lg-10, .col-lg-9, .col-lg-8, .col-lg-7, .col-lg-6, .col-lg-5, .col-lg-4, .col-lg-3, .col-lg-2, .col-lg-1 {
-  padding: 0;
-}
-
 body {
   background-color: black;
   background-image: url('../images/photoBKG_L.jpg');
   background-position: top center;
-  background-position-y: -250px;
   background-repeat: no-repeat;
   background-size: 115%;
 }
@@ -46,10 +41,19 @@ p {
   margin-bottom: 5px;
 }
 
-.row {
-  margin: 0;
+.embed-responsive {
+  filter: drop-shadow(3px 3px 0px #fdc600);
+  border: 5px solid #111111;
+  padding-bottom: 55.25%;
 }
 
+.left-side {
+  padding-right: 5px;
+}
+
+.right-side {
+  padding-left: 5px;
+}
 /* /////////////////////////////////////////////////
   Navbar
 ///////////////////////////////////////////////// */
@@ -123,23 +127,14 @@ ul.navbar-nav {
   About
 ///////////////////////////////////////////////// */
 
-.about-poster{
-  padding: 0;
-}
-
-.about-poster img {
-  box-shadow: 0px 1px 3px 0px #333;
-  max-width:  96.55%;
-  display: block;
+.about-poster {
+  filter: drop-shadow(3px 3px 0px #fdc600);
+  border: 5px solid #111111;
 }
 
 .text-underline {
   text-decoration-line: underline;
   text-decoration-color: #fdc600;
-}
-
-.text-section{
-  padding: 0;
 }
 
 .about-headline h3 {
@@ -206,26 +201,22 @@ ul.navbar-nav {
   margin-bottom: 10px;
 }
 
-.embed-responsive {
-  filter: drop-shadow(3px 3px 0px #fdc600);
-  border: 5px solid #111111;
-  padding-bottom: 55.25%;
-
-}
-
 /* /////////////////////////////////////////////////
   Shop
 ///////////////////////////////////////////////// */
 
-.shop img {
-  width: 60%
+.shop .left-side img {
+  padding: 13px 0;
+  background-color: black;
 }
 
-.shop-bill-img {
-  padding-right: 5px;
-  float: right;
+.shop .left-side img,
+.shop .right-side img {
+  filter: drop-shadow(3px 3px 0px #fdc600);
+  border: 5px solid #111111;
 }
 
-.shop-poster-img {
-  padding-left: 5px;
+.shop-haines,
+.shop-posters {
+  margin-top: 10px;
 }
