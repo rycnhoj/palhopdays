@@ -199,22 +199,28 @@ ul.navbar-nav {
   border: 5px solid;
 }
 
-.bands-button h3 {
-  font-family: 'Chewy', cursive;
-  letter-spacing: 2px;
-  margin: 0;
+.band-select{
+  text-align: center;
 }
 
-.band-select {
-  padding: 5px 10px;
+.band-select h3 {
+  color: white;
+  background-color: black;
+  margin-top: 0;
+  margin-bottom: -5px;
+  font-size: 90px;
+  font-variant-caps: all-small-caps;
+  font-family: 'Open Sans', sans-serif;
+  cursor: pointer;
 }
 
-.band-select .col-lg-2 {
-  padding: 0 10px;
+.band-link h3:hover {
+  text-shadow: 2px 2px 3px #fdc600;
 }
 
-.band-select-row-2 {
-  padding-top: 10px;
+.band-link:last-child {
+  background-color: black;
+  padding-bottom: 18px;
 }
 
 img.band-image {

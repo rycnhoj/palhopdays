@@ -64,27 +64,15 @@
         </div>
       </div> <!-- about -->
       <div class="bands">
-        <div class="bands-button">
-          <h3>select band</h3>
-        </div>
-        <div class="band-select row">
-          <div class="col-lg-2">
-            <img id="MD" class="band-image img-responsive" onclick='changeBandVideo(this.id)' src="./images/posters/MD.jpg">
-          </div>
-          <div class="col-lg-2">
-            <img id="RK" class="band-image img-responsive" onclick='changeBandVideo(this.id)' src="./images/posters/RK.jpg">
-          </div>
-          <div class="col-lg-2">
-            <img id="TI" class="band-image img-responsive" onclick='changeBandVideo(this.id)' src="./images/posters/TI.jpg">
-          </div>
-          <div class="col-lg-2">
-            <img id="TRR" class="band-image img-responsive" onclick='changeBandVideo(this.id)' src="./images/posters/TRR.jpg">
-          </div>
-          <div class="col-lg-2">
-            <img id="TT" class="band-image img-responsive" onclick='changeBandVideo(this.id)' src="./images/posters/TT.jpg">
-          </div>
-          <div class="col-lg-2">
-            <img id="TTT" class="band-image img-responsive" onclick='changeBandVideo(this.id)' src="./images/posters/TTT.jpg">
+        <div class="row">
+          <div class="band-select col-lg-12">
+            <div id="MD" class="band-link" onclick='changeBandVideo(this.id, false)'><h3>The Moon Dawgs</h3></div>
+            <div id="RK" class="band-link" onclick='changeBandVideo(this.id, false)'><h3>The Royal Knights</h3></div>
+            <div id="TI" class="band-link" onclick='changeBandVideo(this.id, false)'><h3>The Innkeepers</h3></div>
+            <div id="TRR" class="band-link" onclick='changeBandVideo(this.id, false)'><h3>The Rockin' Recons</h3></div>
+            <div id="TT" class="band-link" onclick='changeBandVideo(this.id, false)'><h3>The Travelers</h3></div>
+            <div id="TTT" class="band-link" onclick='changeBandVideo(this.id, false)'><h3>Terry and The Telstars</h3></div>
+            <div id="BE" class="band-link" onclick='changeBandVideo(this.id, false)'><h3>Bob Elie</h3></div>
           </div>
         </div>
         <div class="band-video row">
@@ -187,24 +175,24 @@
 
       $.getJSON('./data/bands.json', function (resp) { bandsData = resp })
 
-      var bandButton = $('.bands-button').show()
-      var bandSelect = $('.band-select').hide()
-      var bandImage = $('.band-image')
+      $('.band-video').hide()
+      // var bandSelect = $('.band-select').hide()
+      // var bandImage = $('.band-image')
 
-      bandButton.mouseenter(function () {
-        bandSelect.show();
-        $(this).hide();
-      })
+      // bandButton.mouseenter(function () {
+      //   bandSelect.show();
+      //   $(this).hide();
+      // })
 
-      bandSelect.mouseleave(function () {
-        bandButton.show();
-        $(this).hide();
-      })
+      // bandSelect.mouseleave(function () {
+      //   bandButton.show();
+      //   $(this).hide();
+      // })
 
-      bandImage.click(function(){
-        bandButton.show();
-        bandSelect.hide();
-      })
+      // bandImage.click(function(){
+      //   bandButton.show();
+      //   bandSelect.hide();
+      // })
     })
 
 
@@ -284,7 +272,7 @@
         if (page !== 'shop') { posterVideoPlayer.stopVideo() }
 
         if (page === 'bands') {
-          changeBandVideo(firstBand)
+          changeBandVideo(firstBand, true)
           bandVideoPlayer.stopVideo() // Do not autoplay first video
         }
 
@@ -300,7 +288,7 @@
     }
 
     // Changing band videos
-    function changeBandVideo(bandId) {
+    function changeBandVideo(bandId, first) {
       var poster = $('.band-poster')
       var description = $('.band-description').empty()
       var videoId = bandVideos[bandId]
@@ -312,6 +300,14 @@
       paragraphs.forEach(function (paragrpah) {
         description.append('<p class="band">' + paragrpah + '</p>')
       })
+
+      if(!first) {
+        $('.band-select').hide()
+        $('.band-video').show()
+      } else {
+        $('.band-select').show()
+        $('.band-video').hide()
+      }
 
       updateSelectedBand(bandId)
     }
