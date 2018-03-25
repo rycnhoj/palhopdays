@@ -156,27 +156,60 @@ ul.navbar-nav {
 /* /////////////////////////////////////////////////
   Bands
 ///////////////////////////////////////////////// */
-
-.band-list {
-  padding-left: 0;
-  padding-right: 5px;
+.bands-button {
+  text-align: center;
+  background-color: #fdc600;
+  border: 5px solid;
 }
 
-.band-list img {
-  display: block;
-  width: 86%;
-  margin-left: 15px;
-  padding-top: 5px;
+.bands-button h3 {
+  font-family: 'Chewy', cursive;
+  letter-spacing: 2px;
+  margin: 0;
+}
+
+.band-select {
+  padding: 5px 10px;
+}
+
+.band-select .col-lg-2 {
+  padding: 0 10px;
+}
+
+.band-select-row-2 {
+  padding-top: 10px;
+}
+
+img.band-image {
+  outline: 5px solid black;
+  outline-offset: -1px;
+  filter: grayscale(50%);
   cursor: pointer;
 }
 
-.band-list img:hover {
-  filter: drop-shadow(-2px -2px 0px #fdc600);
-
+img.band-image:hover {
+  filter: grayscale(0%);
 }
 
-.band-list img.active {
-  filter: drop-shadow(2px 2px 0px #fdc600);
+img.band-image.active {
+  outline: 5px solid black;
+  outline-offset: -1px;
+  filter: grayscale(0%);
+  filter: drop-shadow(3px 3px 0px #fdc600);
+}
+
+.band-poster {
+  outline: 5px solid black;
+  outline-offset: -3px;
+  margin: 2px 0 0 2px;
+}
+
+.band-video {
+  padding-top: 10px;
+}
+
+.band-video .left-side {
+  padding-right: 10px;
 }
 
 .band-title {
@@ -190,12 +223,16 @@ ul.navbar-nav {
   filter: drop-shadow(-2px 2px 0px #fdc600);
 }
 
+.band-description {
+  margin-bottom: -10px;
+  padding: 15px 5px 0 5px;
+}
+
 .band-description p {
-  padding-right: 5px;
   font-family: 'Open Sans', sans-serif;
   font-size: 18px;
   text-indent: 42px;
-  letter-spacing: 0px;
+  letter-spacing: -0.5px;
   text-align: justify;
   line-height: 22px;
   margin-bottom: 10px;

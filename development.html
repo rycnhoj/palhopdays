@@ -47,7 +47,21 @@
       })
 
       $.getJSON('./data/bands.json', function (resp) { bandsData = resp })
+
+      var bandButton = $('.bands-button').show()
+      var bandSelect = $('.band-select').hide()
+
+      bandButton.mouseenter(function() {
+        bandSelect.show();
+        $(this).hide();
+      })
+
+      bandSelect.mouseleave(function() {
+        bandButton.show();
+        $(this).hide();
+      })
     })
+
 
     // YouTube
     var homeVideoPlayer, bandVideoPlayer
@@ -55,7 +69,7 @@
     function onYouTubeIframeAPIReady() {
       var vars = {
         'autoplay': 0,
-        'controls': 0 ,
+        'controls': 1 ,
         'enablejsapi': 1,
         'modestbranding': 1,
         'rel': 0,
@@ -148,15 +162,13 @@
 
     // Changing band videos
     function changeBandVideo(bandId) {
-      var poster = $('.band-poster').empty()
-      var title = $('.band-title').empty()
+      var poster = $('.band-poster')
       var description = $('.band-description').empty()
       var videoId = bandVideos[bandId]
       var paragraphs = bandsData[bandId]
 
-      poster.append('<img class="poster" src="./images/posters/' + bandId + '.jpg">')
+      poster.attr('src','./images/posters/' + bandId + '.jpg');
       bandVideoPlayer.loadVideoById({'videoId': videoId});
-      title.text(bandTitles[bandId])
       paragraphs.forEach(function (paragrpah) {
         description.append('<p class="band">' + paragrpah + '</p>')
       })
@@ -204,7 +216,7 @@
         </div>
       </div>
       <div class="about">
-        <div class="page-content row">
+        <div class="row">
           <div class="left-side col-lg-5">
             <img class="about-poster img-responsive" src="./images/poster.jpg"/>
           </div>
@@ -215,29 +227,28 @@
         </div>
       </div>
       <div class="bands">
-        <div class="page-content">
-          <div class="row">
-            <div class="band-list col-lg-3">
-              <img id="MD" class="band-image" onclick='changeBandVideo(this.id)' src="./images/bands/MD.png">
-              <img id="RK" class="band-image" onclick='changeBandVideo(this.id)' src="./images/bands/RK.png">
-              <img id="TI" class="band-image" onclick='changeBandVideo(this.id)' src="./images/bands/TI.png">
-              <img id="TRR" class="band-image" onclick='changeBandVideo(this.id)' src="./images/bands/TRR.png">
-              <img id="TT" class="band-image" onclick='changeBandVideo(this.id)' src="./images/bands/TT.png">
-              <img id="TTT" class="band-image" onclick='changeBandVideo(this.id)' src="./images/bands/TTT.png">
-              <img id="BE" class="band-image" onclick='changeBandVideo(this.id)' src="./images/bands/BE.png">
+        <div class="bands-button"><h3>select band</h3></div>
+        <div class="band-select row">
+          <div class="col-lg-2"><img id="MD" class="band-image img-responsive" onclick='changeBandVideo(this.id)' src="./images/posters/MD.jpg"></div>
+          <div class="col-lg-2"><img id="RK" class="band-image img-responsive" onclick='changeBandVideo(this.id)' src="./images/posters/RK.jpg"></div>
+          <div class="col-lg-2"><img id="TI" class="band-image img-responsive" onclick='changeBandVideo(this.id)' src="./images/posters/TI.jpg"></div>
+          <div class="col-lg-2"><img id="TRR" class="band-image img-responsive" onclick='changeBandVideo(this.id)' src="./images/posters/TRR.jpg"></div>
+          <div class="col-lg-2"><img id="TT" class="band-image img-responsive" onclick='changeBandVideo(this.id)' src="./images/posters/TT.jpg"></div>
+          <div class="col-lg-2"><img id="TTT" class="band-image img-responsive" onclick='changeBandVideo(this.id)' src="./images/posters/TTT.jpg"></div>
+        </div>
+        <div class="band-video row">
+          <div class="col-lg-4 left-side">
+            <img id="TTT" class="band-poster img-responsive" src="">
+          </div>
+          <div class="col-lg-8 right-side">
+            <div class="embed-responsive embed-responsive-16by9">
+              <div id="bandVideo"></div>
             </div>
-            <div class="band-video col-lg-9">
-                <div class="embed-responsive embed-responsive-16by9">
-                  <div id="bandVideo"></div>
-                </div>
-                <h1 class="band-title"></h1>
-                <div class="band-description"></div>
-            </div>
+            <div class="band-description"></div>
           </div>
         </div>
       </div>
       <div class="videos">
-          <h1>videos</h1>
       </div>
       <div class="shop">
         <div class="row">
@@ -258,7 +269,6 @@
             </a>
           </div>
         </div>
-
       </div>
     </div>
   </div>
