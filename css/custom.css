@@ -55,6 +55,22 @@ p {
 .right-side {
   padding-left: 5px;
 }
+
+.about-social-links {
+  float: right;
+  margin-top: -40px;
+  margin-right: 5px;
+}
+
+.social-links {
+  filter: saturate(50%);
+  width: 40px
+}
+
+.social-links:hover {
+  filter: saturate(100%);
+}
+
 /* /////////////////////////////////////////////////
   Navbar
 ///////////////////////////////////////////////// */
@@ -112,7 +128,7 @@ ul.navbar-nav {
   cursor: pointer;
   display: block;
   line-height: 18px;
-  padding: 14px 12px;
+  padding: 14px 8px;
   text-align: center;
   user-select: none;
   -webkit-user-drag: none;
@@ -132,8 +148,6 @@ ul.navbar-nav {
 .home .embed-responsive {
   padding-bottom: 55.7%;
 }
-
-
 
 /* /////////////////////////////////////////////////
   About

@@ -14,10 +14,21 @@
   <link rel="stylesheet" href="./css/custom.css">
 </head>
 <body>
+  <div class="about-social-links">
+    <a href="https://www.facebook.com/palhopdays/" target="_blank">
+      <img class="social-links" src="./images/links/facebook.png" />
+    </a>
+    <a href="https://www.youtube.com/user/PalHopDays/videos" target="_blank">
+      <img class="social-links" src="./images/links/youtube.png" />
+    </a>
+  </div>
   <div class="center">
     <nav class="navbar">
       <a class="navbar-brand" onclick="changePage('home')"></a>
       <ul class="navbar-nav">
+        <li>
+          <a class='nav-home' onclick="changePage('home')">home</a>
+        </li>
         <li>
           <a class='nav-about' onclick="changePage('about')">about</a>
         </li>
@@ -178,6 +189,7 @@
 
       var bandButton = $('.bands-button').show()
       var bandSelect = $('.band-select').hide()
+      var bandImage = $('.band-image')
 
       bandButton.mouseenter(function () {
         bandSelect.show();
@@ -187,6 +199,11 @@
       bandSelect.mouseleave(function () {
         bandButton.show();
         $(this).hide();
+      })
+
+      bandImage.click(function(){
+        bandButton.show();
+        bandSelect.hide();
       })
     })
 
@@ -291,6 +308,7 @@
 
       poster.attr('src', './images/posters/' + bandId + '.jpg');
       bandVideoPlayer.loadVideoById({ 'videoId': videoId });
+      bandVideoPlayer.stopVideo()
       paragraphs.forEach(function (paragrpah) {
         description.append('<p class="band">' + paragrpah + '</p>')
       })
