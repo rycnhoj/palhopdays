@@ -44,7 +44,7 @@ p {
 
 .embed-responsive {
   filter: drop-shadow(3px 3px 0px #fdc600);
-  border: 5px solid #111111;
+  border: 5px solid #111;
   padding-bottom: 55.25%;
 }
 
@@ -124,13 +124,24 @@ ul.navbar-nav {
   text-decoration-line: none;
 }
 
+
+/* /////////////////////////////////////////////////
+  Home
+///////////////////////////////////////////////// */
+
+.home .embed-responsive {
+  padding-bottom: 55.7%;
+}
+
+
+
 /* /////////////////////////////////////////////////
   About
 ///////////////////////////////////////////////// */
 
 .about-poster {
   filter: drop-shadow(3px 3px 0px #fdc600);
-  border: 5px solid #111111;
+  border: 5px solid #111;
 }
 
 .text-underline {
@@ -139,9 +150,20 @@ ul.navbar-nav {
 }
 
 .about-headline h3 {
-  font-weight: bold;
-  text-align: right;
+  text-align: center;
   margin-top: 10px;
+  font-size: 40px;
+  padding-right: 5px;
+  font-family: 'Chewy', cursive;
+  color: #fdc600;
+  filter: drop-shadow(2px 2px 0px #111);
+  letter-spacing: 1px;
+  padding-bottom: 10px;
+}
+
+.about-text {
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 .about-text p {
@@ -182,7 +204,7 @@ ul.navbar-nav {
 }
 
 img.band-image {
-  outline: 5px solid #111111;
+  outline: 5px solid #111;
   outline-offset: -1px;
   filter: grayscale(50%);
   cursor: pointer;
@@ -193,14 +215,14 @@ img.band-image:hover {
 }
 
 img.band-image.active {
-  outline: 5px solid #111111;
+  outline: 5px solid #111;
   outline-offset: -1px;
   filter: grayscale(0%);
   filter: drop-shadow(3px 3px 0px #fdc600);
 }
 
 .band-poster {
-  outline: 5px solid #111111;
+  outline: 5px solid #111;
   outline-offset: -3px;
   margin: 2px 0 0 2px;
 }
@@ -249,7 +271,7 @@ img.band-image.active {
 }
 
 .shop img {
-  border: 5px solid #111111;
+  border: 5px solid #111;
 }
 
 .shop img:hover {
@@ -259,4 +281,18 @@ img.band-image.active {
 .shop-haines,
 .shop-posters {
   margin-top: 10px;
+}
+
+
+/* /////////////////////////////////////////////////
+  Contact
+///////////////////////////////////////////////// */
+
+.contact textarea {
+    width: 100%;
+}
+
+.contact .contact-content {
+  margin: 125px auto;
+  width: 500px;
 }

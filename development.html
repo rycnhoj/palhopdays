@@ -13,7 +13,6 @@
   <link href="https://fonts.googleapis.com/css?family=Chewy|Open+Sans" rel="stylesheet">
   <link rel="stylesheet" href="./css/custom.css">
 </head>
-
 <body>
   <div class="center">
     <nav class="navbar">
@@ -26,39 +25,56 @@
           <a class='nav-bands' onclick="changePage('bands')">bands</a>
         </li>
         <li>
-            <a class='nav-videos' onclick="changePage('videos')">videos</a>
+          <a class='nav-videos' onclick="changePage('videos')">videos</a>
         </li>
         <li>
           <a class='nav-shop' onclick="changePage('shop')">shop</a>
         </li>
+        <!-- <li>
+          <a class='nav-contact' onclick="changePage('contact')">contact</a>
+        </li> -->
       </ul>
-    </nav>
+    </nav> <!-- navbar -->
     <div class="content">
       <div class="home">
         <div class="embed-responsive embed-responsive-16by9">
           <div id="homeVideo" class="embed-responsive-item"></div>
         </div>
-      </div>
+      </div> <!-- home -->
       <div class="about">
         <div class="row">
           <div class="left-side col-lg-5">
-            <img class="about-poster img-responsive" src="./images/poster.jpg"/>
+            <img class="about-poster img-responsive" src="./images/poster.jpg" />
           </div>
-          <div class="rigt-side col-lg-7">
+          <div class="right-side col-lg-7">
             <div class="about-headline"></div>
             <div class="about-text"></div>
           </div>
         </div>
-      </div>
+      </div> <!-- about -->
       <div class="bands">
-        <div class="bands-button"><h3>select band</h3></div>
+        <div class="bands-button">
+          <h3>select band</h3>
+        </div>
         <div class="band-select row">
-          <div class="col-lg-2"><img id="MD" class="band-image img-responsive" onclick='changeBandVideo(this.id)' src="./images/posters/MD.jpg"></div>
-          <div class="col-lg-2"><img id="RK" class="band-image img-responsive" onclick='changeBandVideo(this.id)' src="./images/posters/RK.jpg"></div>
-          <div class="col-lg-2"><img id="TI" class="band-image img-responsive" onclick='changeBandVideo(this.id)' src="./images/posters/TI.jpg"></div>
-          <div class="col-lg-2"><img id="TRR" class="band-image img-responsive" onclick='changeBandVideo(this.id)' src="./images/posters/TRR.jpg"></div>
-          <div class="col-lg-2"><img id="TT" class="band-image img-responsive" onclick='changeBandVideo(this.id)' src="./images/posters/TT.jpg"></div>
-          <div class="col-lg-2"><img id="TTT" class="band-image img-responsive" onclick='changeBandVideo(this.id)' src="./images/posters/TTT.jpg"></div>
+          <div class="col-lg-2">
+            <img id="MD" class="band-image img-responsive" onclick='changeBandVideo(this.id)' src="./images/posters/MD.jpg">
+          </div>
+          <div class="col-lg-2">
+            <img id="RK" class="band-image img-responsive" onclick='changeBandVideo(this.id)' src="./images/posters/RK.jpg">
+          </div>
+          <div class="col-lg-2">
+            <img id="TI" class="band-image img-responsive" onclick='changeBandVideo(this.id)' src="./images/posters/TI.jpg">
+          </div>
+          <div class="col-lg-2">
+            <img id="TRR" class="band-image img-responsive" onclick='changeBandVideo(this.id)' src="./images/posters/TRR.jpg">
+          </div>
+          <div class="col-lg-2">
+            <img id="TT" class="band-image img-responsive" onclick='changeBandVideo(this.id)' src="./images/posters/TT.jpg">
+          </div>
+          <div class="col-lg-2">
+            <img id="TTT" class="band-image img-responsive" onclick='changeBandVideo(this.id)' src="./images/posters/TTT.jpg">
+          </div>
         </div>
         <div class="band-video row">
           <div class="col-lg-4 left-side">
@@ -71,13 +87,13 @@
             <div class="band-description"></div>
           </div>
         </div>
-      </div>
+      </div> <!-- bands -->
       <div class="videos">
-      </div>
+      </div> <!-- videos -->
       <div class="shop">
         <div class="row">
           <div class="left-side col-lg-3">
-            <a href="https://www.bonanza.com/booths/billstuff?item_sort_options[custom_category_id]=626882"  target="_blank">
+            <a href="https://www.bonanza.com/booths/billstuff?item_sort_options[custom_category_id]=626882" target="_blank">
               <img class="shop-bill img-responsive" src="./images/shop/BillStuff.jpg">
             </a>
             <a href="https://hainesphotography.printeli.com/Collections/132957" target="_blank">
@@ -88,15 +104,44 @@
             <div class="embed-responsive embed-responsive-16by9">
               <div id="posterVideo"></div>
             </div>
-            <a><img class="img-responsive shop-posters" src="./images/shop/PostersTemp2.jpg"></a>
-            </div>
+            <a>
+              <img class="img-responsive shop-posters" src="./images/shop/PostersTemp2.jpg">
+            </a>
           </div>
         </div>
-      </div>
-    </div>
-  </div>
+      </div> <!-- shop -->
+      <div class="contact">
+        <div class="contact-content row">
+          <form action="mailto:rycnhoj@gmail.com" method="post" enctype="text/plain">
+            <div class="col-md-12">
+              <div class="form-group">
+                <input type="text" class="form-control" id="name" placeholder="Enter name" required="required" />
+              </div>
+              <div class="form-group">
+                <div class="input-group">
+                  <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-envelope"></span>
+                  </span>
+                  <input type="email" class="form-control" id="email" placeholder="Enter email" required="required" />
+                </div>
+              </div>
+              <div class="form-group">
+                <textarea name="message" id="message" class="form-control" rows="9" cols="25" required="required" placeholder="Message"></textarea>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <button type="submit" class="btn btn-primary pull-right" id="btnContactUs">
+                Send Message</button>
+            </div>
+          </form>
+        </div> <!-- row -->
+
+      </div> <!-- contact -->
+    </div> <!-- content -->
+  </div> <!-- center -->
+
   <script>
-    var pages = ['home', 'about', 'bands', 'videos', 'shop', 'sponsorship']
+    var pages = ['home', 'about', 'bands', 'videos', 'shop', 'contact']
     var bandVideos = {
       'MD': '0AHibdNSVk8',
       'TTT': 'RTk5-BSh8ag',
@@ -119,10 +164,10 @@
     var aboutData
     var bandsData
 
-    $(document).ready(function() {
+    $(document).ready(function () {
       pages.forEach(function (page) { $('.' + page).hide() })
 
-      $.getJSON('./data/about.json', function (resp) { aboutData = resp }).then(function() {
+      $.getJSON('./data/about.json', function (resp) { aboutData = resp }).then(function () {
         $('.about-headline').append('<h3>' + aboutData.headline[0] + '</h3>')
         aboutData.about.forEach(function (section) {
           $('.about-text').append('<p>' + section + '</p>')
@@ -134,12 +179,12 @@
       var bandButton = $('.bands-button').show()
       var bandSelect = $('.band-select').hide()
 
-      bandButton.mouseenter(function() {
+      bandButton.mouseenter(function () {
         bandSelect.show();
         $(this).hide();
       })
 
-      bandSelect.mouseleave(function() {
+      bandSelect.mouseleave(function () {
         bandButton.show();
         $(this).hide();
       })
@@ -152,7 +197,7 @@
     function onYouTubeIframeAPIReady() {
       var vars = {
         'autoplay': 0,
-        'controls': 1 ,
+        'controls': 1,
         'enablejsapi': 1,
         'modestbranding': 1,
         'rel': 0,
@@ -198,7 +243,7 @@
     }
 
     function onPlayerReady() {
-      if(homeReady && bandReady & posterReady) {
+      if (homeReady && bandReady & posterReady) {
         checkUrlForPage()
       }
     }
@@ -206,7 +251,7 @@
     // Handle page nav
     function checkUrlForPage() {
       var pageNav = window.location.hash.substr(1);
-      if(pageNav) {
+      if (pageNav) {
         changePage(pageNav)
       } else {
         changePage('home')
@@ -217,22 +262,16 @@
     function changePage(mode) {
       pages.forEach(function (page) {
 
-        if(page !== 'home') {
-          homeVideoPlayer.stopVideo()
-        } else if (page !== 'bands'){
-          bandVideoPlayer.stopVideo()
-        }
+        if (page !== 'home') { homeVideoPlayer.stopVideo() }
+        if (page !== 'bands') { bandVideoPlayer.stopVideo() }
+        if (page !== 'shop') { posterVideoPlayer.stopVideo() }
 
-        if(page === 'about') {
-
-        }
-
-        if(page === 'bands') {
+        if (page === 'bands') {
           changeBandVideo(firstBand)
-          bandVideoPlayer.stopVideo()
+          bandVideoPlayer.stopVideo() // Do not autoplay first video
         }
 
-        if(page === mode) {
+        if (page === mode) {
           window.history.pushState(mode, "Title", "#" + mode); //Update Url
           $('.nav-' + page).addClass('text-underline')
           $('.' + page).show()
@@ -250,8 +289,8 @@
       var videoId = bandVideos[bandId]
       var paragraphs = bandsData[bandId]
 
-      poster.attr('src','./images/posters/' + bandId + '.jpg');
-      bandVideoPlayer.loadVideoById({'videoId': videoId});
+      poster.attr('src', './images/posters/' + bandId + '.jpg');
+      bandVideoPlayer.loadVideoById({ 'videoId': videoId });
       paragraphs.forEach(function (paragrpah) {
         description.append('<p class="band">' + paragrpah + '</p>')
       })
@@ -263,7 +302,7 @@
       var bandImages = $('.band-image').toArray()
 
       bandImages.forEach(function (image) {
-        if(image.id === bandId) {
+        if (image.id === bandId) {
           $(image).addClass('active')
         } else {
           $(image).removeClass('active')
