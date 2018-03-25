@@ -182,7 +182,7 @@ ul.navbar-nav {
 }
 
 img.band-image {
-  outline: 5px solid black;
+  outline: 5px solid #111111;
   outline-offset: -1px;
   filter: grayscale(50%);
   cursor: pointer;
@@ -193,14 +193,14 @@ img.band-image:hover {
 }
 
 img.band-image.active {
-  outline: 5px solid black;
+  outline: 5px solid #111111;
   outline-offset: -1px;
   filter: grayscale(0%);
   filter: drop-shadow(3px 3px 0px #fdc600);
 }
 
 .band-poster {
-  outline: 5px solid black;
+  outline: 5px solid #111111;
   outline-offset: -3px;
   margin: 2px 0 0 2px;
 }
