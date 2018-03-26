@@ -4,6 +4,16 @@
 
 body {
   background-color: black;
+}
+
+.body {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+
+  background-color: black;
   background-image: url('../images/photoBKG_L.jpg');
   background-position: top center;
   background-repeat: no-repeat;
@@ -282,11 +292,33 @@ img.band-image.active {
 }
 
 /* /////////////////////////////////////////////////
+  Videos
+///////////////////////////////////////////////// */
+
+.music-videos {
+  border: 5px solid #111;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.music-videos-list .col-lg-2{
+  padding-left: 0;
+}
+
+.music-videos:hover {
+  filter: drop-shadow(3px 3px 0px #fdc600);
+}
+
+.music-videos.active {
+  filter: drop-shadow(3px 3px 0px #fdc600);
+}
+
+/* /////////////////////////////////////////////////
   Shop
 ///////////////////////////////////////////////// */
 
 .shop .left-side img {
-  padding: 15px 0;
+  padding: 40px 0;
   background-color: black;
 }
 
@@ -303,6 +335,10 @@ img.band-image.active {
   margin-top: 10px;
 }
 
+.shop-poster-text{
+  padding: 20px 5px 10px 5px;
+  font-size: 21px;
+}
 
 /* /////////////////////////////////////////////////
   Contact
