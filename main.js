@@ -164,37 +164,18 @@ function updateSelectedVideo(videoId) {
 
 // Changing band videos
 function changeBandVideo(bandId, first) {
-  var poster = $('.band-poster')
+  var poster = $('.band-poster').hide()
   var description = $('.band-description').empty()
   var videoId = bandVideos[bandId]
   var paragraphs = bandsData[bandId]
 
-  poster.attr('src', './images/posters/' + bandId + '.jpg')
+  poster.attr('src', './images/posters/' + bandId + '.jpg').fadeIn(500, "swing")
   bandVideoPlayer.loadVideoById({ 'videoId': videoId })
   bandVideoPlayer.stopVideo()
   paragraphs.forEach(function (paragrpah) {
     description.append('<p class="band">' + paragrpah + '</p>')
   })
 
-  if (!first) {
-    $('.band-select').hide()
-    $('.band-video').show()
-  } else {
-    $('.band-select').show()
-    $('.band-video').hide()
-  }
-
-  updateSelectedBand(bandId)
-}
-
-function updateSelectedBand(bandId) {
-  var bandImages = $('.band-image').toArray()
-
-  bandImages.forEach(function (image) {
-    if (image.id === bandId) {
-      $(image).addClass('active')
-    } else {
-      $(image).removeClass('active')
-    }
-  })
+  $('.band-select').hide()
+  $('.band-video').show()
 }
