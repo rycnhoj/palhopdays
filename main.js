@@ -121,6 +121,9 @@ function changePage(mode) {
     if (page === 'videos') {
       changeMusicVideo(firstVideo, true)
       musicVideoPlayer.stopVideo()
+    } else if (page === 'bands') {
+      $('.band-select').show()
+      $('.band-video').hide()
     }
 
     if (page === mode) {
