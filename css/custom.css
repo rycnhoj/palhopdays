@@ -32,6 +32,7 @@ body {
   border-style: double;
   border-width: 10px;
   padding: 10px;
+  margin-bottom: 50px;
 }
 
 h1 {
@@ -45,7 +46,6 @@ h1 {
 p {
   font-family: 'Open Sans', sans-serif;
   font-size: 18px;
-  text-indent: 25px;
   letter-spacing: -1px;
   text-align: justify;
   line-height: 20px;
@@ -81,6 +81,9 @@ p {
   filter: saturate(100%);
 }
 
+img {
+  user-select: none;
+}
 /* /////////////////////////////////////////////////
   Navbar
 ///////////////////////////////////////////////// */
@@ -182,7 +185,7 @@ ul.navbar-nav {
   color: #fdc600;
   filter: drop-shadow(2px 2px 0px #111);
   letter-spacing: 1px;
-  padding-bottom: 10px;
+  padding-bottom: 5px;
 }
 
 .about-text {
@@ -366,11 +369,44 @@ img.band-image.active {
   Contact
 ///////////////////////////////////////////////// */
 
-.contact textarea {
-    width: 100%;
+.contact {
+  margin: 75px auto;
 }
 
-.contact .contact-content {
-  margin: 125px auto;
-  width: 500px;
+.contact .links {
+  padding-top: 15px;
+}
+
+.contact-container {
+  padding-top: 20%;
+}
+
+.contact-container h3 {
+  font-size: 40px;
+}
+.contact-container p {
+  font-size: 25px;
+}
+
+.contact-facebook,
+.contact-youtube {
+  padding-top: 40px;
+  margin-left: 15px;
+  max-width: 55%;
+  cursor: pointer;
+}
+
+.bill {
+  border: 5px solid #111;
+  max-width: 85%;
+  margin: 15px auto;
+}
+
+.bill-text{
+  text-align: center;
+  font-size: 22px;
+}
+
+.bold {
+  font-weight: bold;
 }

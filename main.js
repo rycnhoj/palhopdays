@@ -169,7 +169,7 @@ function changeBandVideo(bandId, first) {
   var videoId = bandVideos[bandId]
   var paragraphs = bandsData[bandId]
 
-  poster.attr('src', './images/posters/' + bandId + '.jpg').fadeIn(500, "swing")
+  poster.attr('src', './images/posters/' + bandId + '.jpg').fadeIn(1000, "swing")
   bandVideoPlayer.loadVideoById({ 'videoId': videoId })
   bandVideoPlayer.stopVideo()
   paragraphs.forEach(function (paragrpah) {
