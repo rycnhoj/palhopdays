@@ -116,25 +116,34 @@ var homeReady, bandReady, posterReady, videosReady
 
 function homeVideoPlayerReady() {
   homeReady = true
+  onPlayerReady()
 }
 
 function bandVideoPlayerReady() {
   bandReady = true
+  onPlayerReady()
 }
 
 function posterVideoPlayerReady() {
   posterReady = true
+  onPlayerReady()
 }
 
 function musicVideoPlayerReady() {
   videosReady = true
+  onPlayerReady()
+}
+
+function onPlayerReady() {
+  if (homeReady && bandReady && posterReady && videosReady) {
+    // Once Loaded Show The Website
+    $('.about-social-links').fadeIn(1000, "swing")
+    $('.center').fadeIn(1000, "swing")
+  }
 }
 
 $( document ).ready(function() {
   checkUrlForPage()
-
-  $('.about-social-links').fadeIn(1000, "swing")
-  $('.center').fadeIn(1000, "swing")
 });
 
 // Handle page nav
