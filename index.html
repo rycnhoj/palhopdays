@@ -6,20 +6,227 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Pal Hop Days</title>
+  <script type="text/javascript" src="http://www.youtube.com/player_api"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
     crossorigin="anonymous">
   <link href="https://fonts.googleapis.com/css?family=Chewy|Open+Sans" rel="stylesheet">
+  <link rel="stylesheet" href="./css/custom.css">
 </head>
 
 <body>
-  <div class="center">
-    <div class="content">
-      <div class="home">
-        <h2 style="text-align: center; padding-top: 22%">Coming Soon</h2>
-      </div>
+  <div class='body'>
+    <div class="about-social-links">
+      <a href="https://www.facebook.com/palhopdays/" target="_blank">
+        <img class="social-links" src="./images/links/facebook.png" />
+      </a>
+      <a href="https://www.youtube.com/user/PalHopDays/videos" target="_blank">
+        <img class="social-links" src="./images/links/youtube.png" />
+      </a>
     </div>
+    <div class="center">
+      <nav class="navbar">
+        <a class="navbar-brand" onclick="changePage('home')"></a>
+        <ul class="navbar-nav">
+          <li>
+            <a class='nav-home' onclick="changePage('home')">home</a>
+          </li>
+          <li>
+            <a class='nav-about' onclick="changePage('about')">about</a>
+          </li>
+          <li>
+            <a class='nav-bands' onclick="changePage('bands')">bands</a>
+          </li>
+          <li>
+            <a class='nav-videos' onclick="changePage('videos')">videos</a>
+          </li>
+          <li>
+            <a class='nav-shop' onclick="changePage('shop')">shop</a>
+          </li>
+          <li>
+            <a class='nav-contact' onclick="changePage('contact')">contact</a>
+          </li>
+        </ul>
+      </nav>
+      <!-- navbar -->
+      <div class="content">
+        <div class="home">
+          <div class="embed-responsive embed-responsive-16by9">
+            <div id="homeVideo" class="embed-responsive-item"></div>
+          </div>
+        </div>
+        <!-- home -->
+        <div class="about">
+          <div class="row">
+            <div class="left-side col-lg-5 col-md-5 col-sm-5">
+              <img class="about-poster img-responsive" src="./images/poster.jpg" />
+            </div>
+            <div class="right-side col-lg-7 col-md-7 col-sm-7">
+              <div class="about-headline">
+                <h3>New England's Garage Band Scene</h3>
+              </div>
+              <div class="row">
+                <!-- <div class="left-side col-lg-6 col-md-6 col-sm-6">
+                    <img class="about-images img-responsive" src="./images/about/about1.jpg">
+                </div> -->
+                <div class="right-side col-lg-12 col-md-12 col-sm-12">
+                  <img class="about-images img-responsive" src="./images/about/about2.png">
+                </div>
+              </div>
+              <div class="about-text">
+                <p>In the spring of 1964, eight weeks after the Beatles first arrived in America, another music phenomenon was
+                  set to occur in the twin city mill towns of Lewiston-Auburn, Maine.</p>
+                <p>What started out as a battle of the bands to benefit the city’s Police Athletic League unexpectedly turned
+                  into a weekly event known as the PAL HOP. Several New England groups would battle it out every Friday night,
+                  attracting nearly 2,000 kids who came to dance and enjoy live music. For more than three years, until a
+                  riot abruptly ended the shows, the PAL HOP was the nucleus of one of the largest garage band scenes in
+                  the country.</p>
+                <p>Dozens of these groups cut their own records. Most of them found the road from Maine to the Top 40 marred
+                  with challenges and disappointment. Today, some of that music is being re-discovered.</p>
+                <p>PAL HOP DAYS is the story of New England’s answer to Liverpool, and six groups that reunited more than forty
+                  years later for one unforgettable concert.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- about -->
+        <div class="bands">
+          <div class="row">
+            <div class="band-select col-lg-12 col-md-12 col-sm-12">
+              <div id="MD" class="band-link" onclick='changeBandVideo(this.id, false)'>
+                <h3>The Moon Dawgs</h3>
+              </div>
+              <div id="RK" class="band-link" onclick='changeBandVideo(this.id, false)'>
+                <h3>The Royal Knights</h3>
+              </div>
+              <div id="TI" class="band-link" onclick='changeBandVideo(this.id, false)'>
+                <h3>The Innkeepers</h3>
+              </div>
+              <div id="TRR" class="band-link" onclick='changeBandVideo(this.id, false)'>
+                <h3>The Rockin' Recons</h3>
+              </div>
+              <div id="TT" class="band-link" onclick='changeBandVideo(this.id, false)'>
+                <h3>The Travelers</h3>
+              </div>
+              <div id="TTT" class="band-link" onclick='changeBandVideo(this.id, false)'>
+                <h3>Terry and The Telstars</h3>
+              </div>
+              <div id="BE" class="band-link" onclick='changeBandVideo(this.id, false)'>
+                <h3>Bob Elie</h3>
+              </div>
+            </div>
+          </div>
+          <div class="band-video row">
+            <div class="col-lg-4 col-md-4 col-sm-4 left-side">
+              <img id="TTT" class="band-poster img-responsive" src="">
+            </div>
+            <div class="col-lg-8 col-md-8 col-sm-8 right-side">
+              <div class="embed-responsive embed-responsive-16by9">
+                <div id="bandVideo"></div>
+              </div>
+              <div class="band-description"></div>
+            </div>
+          </div>
+        </div>
+        <!-- bands -->
+        <div class="videos">
+          <div class="row">
+            <div class="col-lg-2 col-md-2 col-sm-2"></div>
+            <div class="col-lg-8 col-md-8 col-sm-8">
+              <div class="embed-responsive embed-responsive-16by9">
+                <div id="musicVideo"></div>
+              </div>
+              <div>
+                <p class="videos-text">The “Pal Hop Days” project has produced several videos not included in the original film release. Visit our
+                  YouTube Channel to view additional music videos and performances.</p>
+              </div>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-2"></div>
+          </div>
+          <div class="row">
+            <div class="music-videos-list col-lg-12 col-md-12 col-sm-12">
+              <div class="col-lg-2 col-md-2 col-sm-2"></div>
+              <div class="music-videos-div col-lg-2 col-md-2 col-sm-2">
+                <img id='sixty' class="music-videos img-responsive" onclick="changeMusicVideo(this.id, false)" src="./images/videos/6060.jpg">
+              </div>
+              <div class="music-videos-div col-lg-2 col-md-2 col-sm-2">
+                <img id='reasons' class="music-videos img-responsive" onclick="changeMusicVideo(this.id, false)" src="./images/videos/reasons.jpg">
+              </div>
+              <div class="music-videos-div col-lg-2 col-md-2 col-sm-2">
+                <img id='la' class="music-videos img-responsive" onclick="changeMusicVideo(this.id, false)" src="./images/videos/la.jpg">
+              </div>
+              <div class="col-lg-2 col-md-2 col-sm-2">
+                <a href="https://www.youtube.com/user/PalHopDays/videos" target="_blank">
+                  <img id='youtube' class="music-videos img-responsive" src="./images/videos/youtube.jpg">
+                </a>
+              </div>
+              <div class="col-lg-2 col-md-2 col-sm-2"></div>
+            </div>
+          </div>
+          <!-- row -->
+        </div>
+        <!-- videos -->
+        <div class="shop">
+          <div class="row">
+            <div class="left-side col-lg-3 col-md-3 col-sm-3">
+              <a href="https://www.bonanza.com/booths/billstuff?item_sort_options[custom_category_id]=626882" target="_blank">
+                <img class="shop-bill img-responsive" src="./images/shop/BillStuff.jpg">
+              </a>
+              <a href="https://hainesphotography.printeli.com/Collections/132957" target="_blank">
+                <img class="shop-haines img-responsive" src="./images/shop/HainesPhotography.jpg">
+              </a>
+            </div>
+            <div class="right-side col-lg-9 col-md-9 col-sm-9">
+              <div class="embed-responsive embed-responsive-16by9">
+                <div id="posterVideo"></div>
+              </div>
+              <div>
+                <p class="shop-poster-text">Stephanie Zydenbos-Heino has designed six Retro-60s posters featuring the Pal Hop Days bands. Check back
+                  soon for details on how to purchase these wonderful creations by the talented New Hampshire artist.</p>
+              </div>
+              <a>
+                <img class="img-responsive shop-posters" src="./images/shop/Posters.jpg">
+              </a>
+            </div>
+          </div>
+        </div>
+        <!-- shop -->
+        <div class="contact">
+          <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+              <div class="right-side col-lg-7 col-md-7 col-sm-7">
+                <img class="img-responsive bill" src="./images/contact/bill.jpg">
+                <p class="bill-text bold">Bill Maroldo, “Pal Hop Days” Producer/Director</p>
+              </div>
+              <div class="left-side col-lg-5 col-md-5 col-sm-5">
+                <div class="contact-container">
+                  <div>
+                    <h3 class="bold">Contact Information</h3>
+                  </div>
+                  <div>
+                    <p>Email | palhopdays@gmail.com</p>
+                  </div>
+                  <div class="links">
+                    <a href="https://www.facebook.com/palhopdays/" target="_blank">
+                      <img class="img-responsive contact-facebook" src="./images/contact/facebook.png">
+                    </a>
+                    <a href="https://www.youtube.com/user/PalHopDays/videos" target="_blank">
+                      <img class="img-responsive contact-youtube" src="./images/contact/youtube.png">
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- row -->
+        </div>
+        <!-- contact -->
+      </div>
+      <!-- content -->
+    </div>
+    <!-- center -->
   </div>
+  <script src="main.js" type="text/javascript"></script>
 </body>
 
 </html>
